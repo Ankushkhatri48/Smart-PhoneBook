@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{user/user_base::layout(~{::section})}">
+<head>
+    <meta charset="utf-8">
+    <title>Contact Details</title>
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4 text-center">
+
+                        <div class="mb-3">
+                            <i class="fa-solid fa-address-card fa-4x text-secondary"></i>
+                        </div>
+
+                        <h3 class="fw-bold mb-1">
+                            <span th:text="${contact.name}">Name</span>
+                            <span th:if="${contact.secondName != null and !contact.secondName.isEmpty()}"
+                                  class="text-muted fs-5"
+                                  th:text="'(' + ${contact.secondName} + ')'"></span>
+                        </h3>
+                        <p class="text-muted mb-4" th:text="${contact.work != null and !contact.work.isEmpty() ? contact.work : 'Contact'}">Work</p>
+
+                        <div class="table-responsive text-start">
+                            <table class="table table-bordered align-middle">
+                                <tbody>
+                                <tr>
+                                    <th scope="row" style="width: 30%;"><i class="fa-solid fa-id-card me-2 text-secondary"></i>Contact ID</th>
+                                    <td th:text="${'SCM' + contact.cId}">SCM1</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i class="fa-solid fa-envelope me-2 text-secondary"></i>Email</th>
+                                    <td th:text="${contact.email != null and !contact.email.isEmpty() ? contact.email : 'N/A'}">email@example.com</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i class="fa-solid fa-phone me-2 text-secondary"></i>Phone</th>
+                                    <td th:text="${contact.phone}">1234567890</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i class="fa-solid fa-briefcase me-2 text-secondary"></i>Work</th>
+                                    <td th:text="${contact.work != null and !contact.work.isEmpty() ? contact.work : 'N/A'}">Developer</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="text-start mt-3 p-3 bg-light rounded border">
+                            <h6 class="fw-bold text-secondary mb-2">
+                                <i class="fa-solid fa-note-sticky me-2"></i>About / Notes
+                            </h6>
+                            <p class="mb-0" th:text="${contact.description != null and !contact.description.isEmpty() ? contact.description : 'No additional notes provided.'}"></p>
+                        </div>
+
+                        <div class="d-flex justify-content-center gap-3 mt-4">
+                            <form th:action="@{'/user/update-contact/' + ${contact.cId}}" method="post">
+                                <button type="submit" class="btn btn-primary-custom px-4">
+                                    <i class="fa-solid fa-pen-to-square me-2"></i>Update
+                                </button>
+                            </form>
+
+                            <a th:href="@{'/user/delete/' + ${contact.cId}}"
+                               onclick="return confirm('Are you sure you want to delete this contact?')"
+                               class="btn btn-danger px-4">
+                                <i class="fa-solid fa-trash me-2"></i>Delete
+                            </a>
+
+                            <a th:href="@{/user/show-contacts/0}" class="btn btn-outline-secondary px-4">
+                                <i class="fa-solid fa-arrow-left me-2"></i>Back
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

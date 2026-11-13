@@ -1,0 +1,116 @@
+body {
+    background-color: #f4f6f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bg-primary-custom {
+    background-color: #009688 !important;
+}
+
+.btn-primary-custom {
+    background-color: #009688;
+    border-color: #009688;
+    color: #ffffff;
+}
+
+.btn-primary-custom:hover {
+    background-color: #00796b;
+    border-color: #00796b;
+    color: #ffffff;
+}
+
+/* Home Banner */
+.banner {
+    width: 100%;
+    height: 92vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+    url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+}
+
+/* Dashboard Sidebar */
+.sidebar {
+    width: 240px;
+    background: #ffffff;
+    height: 100vh;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    padding-top: 20px;
+    border-right: 1px solid #e0e0e0;
+    z-index: 100;
+}
+
+.sidebar a {
+    display: block;
+    width: 100%;
+    padding: 12px 25px;
+    text-decoration: none;
+    color: #555555;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    background-color: #e0f2f1;
+    color: #00796b;
+    border-left: 4px solid #009688;
+}
+
+.sidebar .divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 15px 0;
+}
+
+.content {
+    margin-left: 240px;
+    padding: 25px;
+    margin-top: 56px;
+}
+
+/* Contact Avatar */
+.my-profile-picture {
+    width: 38px;
+    height: 38px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #cccccc;
+}
+
+.detail-profile-picture {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #009688;
+}
+
+/* Live Search Dropdown */
+.search-container {
+    position: relative;
+}
+
+.search-result {
+    position: absolute;
+    background: #ffffff;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 999;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+    .content {
+        margin-left: 0;
+    }
+}

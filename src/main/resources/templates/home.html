@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+    <meta charset="utf-8">
+    <title>Home</title>
+</head>
+<body>
+<section class="banner d-flex justify-content-center align-items-center">
+    <div class="text-center px-3">
+        <h1 class="display-4 fw-bold mb-3">Smart PhoneBook</h1>
+        <p class="lead mb-4 mx-auto" style="max-width: 650px;">
+            Start collecting and organizing your contacts in a smarter, secure way.
+            Access your personal address book anytime from anywhere.
+        </p>
+        <a th:href="@{/signin}" class="btn btn-primary-custom btn-lg px-4 me-2 shadow">
+            Get Started
+        </a>
+        <a th:href="@{/signup}" class="btn btn-outline-light btn-lg px-4">
+            Create Account
+        </a>
+    </div>
+</section>
+</body>
+</html>

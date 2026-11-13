@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{user/user_base::layout(~{::section})}">
+<head>
+    <meta charset="utf-8">
+    <title>Add Contact</title>
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <h3 class="text-center fw-bold mb-4">
+                            <i class="fa-solid fa-user-plus me-2 text-secondary"></i>Add New Contact
+                        </h3>
+
+                        <form th:action="@{/user/process-contact}"
+                              method="post"
+                              th:object="${contact}">
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                                <input type="text"
+                                       name="name"
+                                       class="form-control"
+                                       th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"
+                                       placeholder="Enter contact name *"
+                                       th:value="${contact.name}"
+                                       required>
+                                <div class="invalid-feedback" th:each="e : ${#fields.errors('name')}" th:text="${e}"></div>
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa-solid fa-id-badge"></i></span>
+                                <input type="text"
+                                       name="secondName"
+                                       class="form-control"
+                                       placeholder="Enter nickname or last name"
+                                       th:value="${contact.secondName}">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+                                <input type="text"
+                                       name="phone"
+                                       class="form-control"
+                                       th:classappend="${#fields.hasErrors('phone') ? 'is-invalid' : ''}"
+                                       placeholder="Enter phone number *"
+                                       th:value="${contact.phone}"
+                                       required>
+                                <div class="invalid-feedback" th:each="e : ${#fields.errors('phone')}" th:text="${e}"></div>
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                                <input type="email"
+                                       name="email"
+                                       class="form-control"
+                                       th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}"
+                                       placeholder="Enter email address"
+                                       th:value="${contact.email}">
+                                <div class="invalid-feedback" th:each="e : ${#fields.errors('email')}" th:text="${e}"></div>
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa-solid fa-briefcase"></i></span>
+                                <input type="text"
+                                       name="work"
+                                       class="form-control"
+                                       placeholder="Enter work / profession"
+                                       th:value="${contact.work}">
+                            </div>
+
+                            <div class="mb-4">
+                                    <textarea name="description"
+                                              rows="4"
+                                              class="form-control"
+                                              placeholder="Enter notes or extra information about this contact..."
+                                              th:text="${contact.description}"></textarea>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary-custom px-5">
+                                    <i class="fa-solid fa-floppy-disk me-2"></i>Save Contact
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

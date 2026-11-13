@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+    <meta charset="utf-8">
+    <title>Register</title>
+</head>
+<body>
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+
+                        <!-- Session Flash Message -->
+                        <div th:if="${session.message}" th:classappend="${session.messageType}" class="alert alert-dismissible fade show" role="alert">
+                            <span th:text="${session.message}"></span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            <th:block th:text="${@sessionUtilityBean.removeMessageFromSession()}"></th:block>
+                        </div>
+
+                        <div class="text-center mb-4">
+                            <i class="fa-solid fa-user-plus fa-3x text-secondary mb-2"></i>
+                            <h2 class="fw-bold">Create an Account</h2>
+                        </div>
+
+                        <form novalidate th:action="@{/do_register}" method="post" th:object="${user}">
+
+                            <!-- Name -->
+                            <div class="mb-3">
+                                <label for="name_field" class="form-label fw-semibold">Full Name</label>
+                                <input type="text"
+                                       name="name"
+                                       class="form-control"
+                                       th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"
+                                       id="name_field"
+                                       placeholder="Enter your name"
+                                       th:value="${user.name}"
+                                       required>
+                                <div class="invalid-feedback" th:each="e : ${#fields.errors('name')}" th:text="${e}"></div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label for="email_field" class="form-label fw-semibold">Email Address</label>
+                                <input type="email"
+                                       name="email"
+                                       class="form-control"
+                                       th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}"
+                                       id="email_field"
+                                       placeholder="name@example.com"
+                                       th:value="${user.email}"
+                                       required>
+                                <div class="invalid-feedback" th:each="e : ${#fields.errors('email')}" th:text="${e}"></div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="mb-3">
+                                <label for="password_field" class="form-label fw-semibold">Password</label>
+                                <input type="password"
+                                       name="password"
+                                       class="form-control"
+                                       th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}"
+                                       id="password_field"
+                                       placeholder="Minimum 6 characters"
+                                       required>
+                                <div class="invalid-feedback" th:each="e : ${#fields.errors('password')}" th:text="${e}"></div>
+                            </div>
+
+                            <!-- About -->
+                            <div class="mb-3">
+                                <label for="about_field" class="form-label fw-semibold">About Yourself</label>
+                                <textarea name="about"
+                                          id="about_field"
+                                          rows="3"
+                                          class="form-control"
+                                          placeholder="Write a brief bio..."
+                                          th:text="${user.about}"></textarea>
+                            </div>
+
+                            <!-- Terms Checkbox -->
+                            <div class="form-check mb-4">
+                                <input type="checkbox" name="agreement" class="form-check-input" id="agreement">
+                                <label class="form-check-label" for="agreement">Accept terms and conditions</label>
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary-custom btn-lg">Register</button>
+                                <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
