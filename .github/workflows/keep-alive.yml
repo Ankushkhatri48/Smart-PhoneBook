@@ -1,0 +1,14 @@
+name: Keep Smart Phonebook Alive
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping App and DB
+        run: |
+          curl -f -s -o /dev/null https://smart-phonebook-rz92.onrender.com/health || exit 1
